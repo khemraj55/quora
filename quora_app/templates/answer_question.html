@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Answer Question</title>
+</head>
+<body>
+    <h2>Answer Question</h2>
+    <h3>{{ question.text }}</h3>
+    <p>Date: {{ question.created_at }}</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Post Answer</button>
+    </form>
+    <br>
+    <p>Likes: {{ question.answer_set.first.likes.count }}</p>
+    <p>Date: {{ question.answer_set.first.created_at }}</p>
+</body>
+</html>

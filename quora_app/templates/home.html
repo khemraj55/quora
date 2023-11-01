@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <h2>Home</h2>
+    {% for question in questions %}
+        <h3>{{ question.text }}</h3>
+        <p>Posted by: {{ question.user.username }}</p>
+        <p>Date: {{ question.created_at }}</p>
+        {% for answer in question.answer_set.all %}
+            <p>{{ answer.text }}</p>
+            <p>Likes: {{ answer.likes.count }}</p>
+            <p>Date: {{ answer.created_at }}</p>
+            <a href="{% url 'like_answer' answer.id %}">Like</a><br><br>
+        {% endfor %}
+        <a href="{% url 'answer_question' question.id %}">Answer</a><br><br>
+    {% endfor %}
+    <a href="{% url 'ask_question' %}">Ask a Question</a><br><br>
+    <a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>
+
